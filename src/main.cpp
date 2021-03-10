@@ -139,7 +139,7 @@ int main(int argc, char const* argv[])
 {
 	vector<Triangle> triangles;
 
-	std::string inputfile = "./Resources/CornellBox-Original.obj";
+	std::string inputfile = "./resources/cornell_box_original.obj";
 	tinyobj::ObjReaderConfig reader_config;
 	reader_config.mtl_search_path = "./"; // Path to material files
 

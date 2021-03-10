@@ -1,10 +1,10 @@
-BUILD = ./build
+BUILD = ./build.out
 SRC = ./src
 
 COMPILER = g++
 CXXFLAGS = -Wno-long-long -O0 -ggdb
 
-all: clean compile doc
+all: clean compile
 
 compile: 
 	$(COMPILER) $(SRC)/*.cpp $(CXXFLAGS) -o $(BUILD)
