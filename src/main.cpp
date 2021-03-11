@@ -3,7 +3,7 @@
 
 int main(int argc, char const *argv[])
 {
-	Scene scene; //loading cornell box
+	Scene scene = Scene("./resources/cornell_box_original.obj"); //loading cornell box
 
 	cout << scene.triangles.size() << endl;
 
