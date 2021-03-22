@@ -1,7 +1,9 @@
-#include "utils.h"
+#pragma once
 
-struct Ray
-{
-	Ray(vec3 o_, vec3 d_) : o(o_), d(d_){};
-	vec3 o, d;
+#include "vec3.h"
+
+struct Ray {
+	Vec3 origin, direction;
+
+	Ray(const Vec3& _origin, const Vec3& _direction);
 };
