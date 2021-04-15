@@ -5,7 +5,7 @@ Scene::Scene()
 }
 
 std::vector<Light*> Scene::GenerateLightsInTriangle(Triangle* _triangle) {
-	std::srand(std::time(NULL));
+	std::rand();
 	std::vector<Light*> lights;
 	for (int i = 0; i < lightSampleRate; i++)
 	{
@@ -93,10 +93,7 @@ void Scene::LoadGeometry(const std::vector<std::string>& _paths, const Loader& _
 
 	for (auto triangle : triangles) {
 		if (triangle->material->emission.length() > 0) {
-			auto generatedLights = GenerateLightsInTriangle(triangle);
-			for (auto light : generatedLights) {
-				areaLights.push_back(light);
-			}
+			areaLights.push_back(triangle);
 		}
 	}
 

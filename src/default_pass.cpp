@@ -76,14 +76,24 @@ Vec3 DefaultPass::LightRay(Ray& _ray, int _bounce, Scene& _scene, bool _culling)
 	}
 
 	Light* tmpLight = new Light();
+
+	std::vector<Light*> areaLights;
+
+	for (auto triangle : _scene.areaLights) {
+		auto generatedLights = _scene.GenerateLightsInTriangle(triangle);
+		for (auto light : generatedLights) {
+			areaLights.push_back(light);
+		}
+	}
+
 	//area lights
-	for (auto light : _scene.areaLights) {
+	for (auto light : areaLights) {
 		Vec3 lightV = (light->position - hit.position).normalized();
 		Vec3 viewV = (-_ray.direction).normalized();
 
 		tmpLight->normal = light->normal;
 		tmpLight->area = light->area;
-		double w = tmpLight->area * Vec3::Dot(tmpLight->normal, -lightV) / lightSampleRate / lightV.length() / lightV.length();
+		double w = (tmpLight->area * Vec3::Dot(tmpLight->normal, -lightV)) / lightSampleRate / (lightV.length() * lightV.length());
 		if (w < 0)
 			w = 0;
 		tmpLight->color = light->color * w;
@@ -106,6 +116,7 @@ Vec3 DefaultPass::LightRay(Ray& _ray, int _bounce, Scene& _scene, bool _culling)
 			result += Phong::CalculateSpecular(hit.triangle, tmpLight, viewV, Ray(hit.position, -lightV), hit.normal);
 		}
 	}
+	result *= 1.0 / (float)areaLights.size();
 
 	delete tmpLight;
 

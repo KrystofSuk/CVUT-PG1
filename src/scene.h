@@ -10,7 +10,7 @@
 struct Scene {
 	std::vector<Triangle*> triangles;
 	std::vector<Light*> lights;
-	std::vector<Light*> areaLights;
+	std::vector<Triangle*> areaLights;
 	std::vector<Material*> materials;
 
 	BVHTree bvh;
