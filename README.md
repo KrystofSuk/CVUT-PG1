@@ -8,5 +8,5 @@ Ray tracer utilizes basic implementation of light ray which reflect and refracts
 
 ## Renders
 
-Render of scene with 5 bounce and 10 sample area light. It took 8 minutes.<br>
+Render of scene<br>
 ![Render](doc/5sp-8min.jpg)
